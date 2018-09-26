@@ -42,16 +42,21 @@ body {
     height: 35px;
 }
 
+
 .text-box{
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 .heading-primary {
     color: #fff;
     text-transform: uppercase;
+
+    backface-visibility: hidden; /* fixes issue when animation looks jittery*/
+    margin-bottom: 60px;
 }
 
 .heading-primary__main {
@@ -72,6 +77,57 @@ body {
     animation: moveInRight 1s ease-out;
 }
 
+.btn:link,
+.btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    position:relative;
+    border-radius: 100px;
+    transition: all .2s;
+}
+
+.btn:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
+}
+.btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+}
+
+.btn--white {
+    background-color: #fff;
+    color: #777;
+    padding: 15px 40px;
+}
+
+.btn::after{
+    content: "";
+    display: inline-block;
+    height:100%;
+    width:100%;
+    border-radius: 100px;
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: -1;
+    transition: all .4s;    
+}
+
+.btn--white::after{
+    background-color: #fff;
+}
+
+.btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0; 
+}
+
+.btn__animated {
+    animation: moveInBottom .5s ease-out .75s;
+    animation-fill-mode: backwards; /* to make the buttom start with opacity 0*/
+}
 
 /* Animations */
 
@@ -96,6 +152,17 @@ body {
     }
     80% {
         transform: translateX(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
     }
     100% {
         opacity: 1;
