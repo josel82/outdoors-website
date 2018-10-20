@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "nodemon": "^1.18.4"
   },
   "devDependencies": {
     "node-sass": "^4.9.3"
   },
   "scripts": {
-    "compile:scss": "node-sass sass/styles.scss css/styles.css -w",
+    "compile:scss": "node-sass sass/styles.scss public/assets/css/styles.css -w",
     "start": "node server/server.js"
   },
   "repository": {
